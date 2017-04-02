@@ -44,10 +44,28 @@ if(NOT MINGW)
     target_compile_options(platform PUBLIC -fPIC)
 endif()
 
-if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    target_link_libraries(platform "-framework OpenGL" -L/usr/X11/lib -L/usr/X11R6/lib)
-else()
-    target_link_libraries(platform GL GLEW)
-endif()
 target_include_directories(platform PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_SYSTEM_INCLUDE_PATH})
-target_link_libraries(platform dl tiff X11)
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(platform
+            "-framework OpenGL"
+            -L/usr/X11/lib
+            -L/usr/X11R6/lib
+            X11
+            dl
+            tiff
+            )
+elseif(WIN32)
+    target_link_libraries(platform
+            opengl32
+            )
+else()
+    target_link_libraries(platform
+            GL
+            GLEW
+            X11
+            dl
+            tiff
+            )
+endif()
+target_link_libraries(platform)

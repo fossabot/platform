@@ -45,8 +45,6 @@ if(MINGW)
     # External Libraries
     include_directories(${CMAKE_SOURCE_DIR}/external/glew-2.0.0/include/)
     include_directories(${CMAKE_SOURCE_DIR}/external/tiff-3.8.2-1-lib/include/)
-
-    add_subdirectory(external/glew-2.0.0/build/cmake)
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 endif()
@@ -54,6 +52,8 @@ endif()
 add_definitions("-D_DEBUG")
 
 add_subdirectory(platform)
+
+# Example Projects
 add_subdirectory(examples/image_viewer)
 add_subdirectory(examples/glfw_image_viewer)
 
