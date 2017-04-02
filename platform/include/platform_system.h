@@ -154,7 +154,7 @@ For more information, please refer to <http://unlicense.org>
 
 // Compiler
 
-#if defined(_MSC_VER)
+#if defined(_WIN32)
 #   define PL_INSTANCE  HINSTANCE
 #   define PL_FARPROC   FARPROC
 #	define PL_EXTERN	extern

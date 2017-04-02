@@ -156,7 +156,7 @@ const PLchar *plGetFileName(const PLchar *path) {
 void plGetUserName(PLchar *out) {
     plFunctionStart();
 #ifdef _WIN32
-    PLchar userstring[PL_MAX_USERNAME];
+    PLchar userstring[PL_SYSTEM_MAX_USERNAME];
 
     // Set these AFTER we update active function.
     DWORD name = sizeof(userstring);
@@ -278,9 +278,11 @@ void plSetWorkingDirectory(const char *path) {
             case EACCES:
                 plSetError("Search permission is denied for any component of pathname!\n");
                 break;
+#if !defined(_WIN32)
             case ELOOP:
                 plSetError("A loop exists in the symbolic links encountered during resolution of the path argument!\n");
                 break;
+#endif
             case ENAMETOOLONG:
                 plSetError("The length of the path argument exceeds PATH_MAX or a pathname component is longer than \
                 NAME_MAX!\n");

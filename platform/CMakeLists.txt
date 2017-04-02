@@ -31,13 +31,19 @@ file(
         GLOB PLATFORM_SOURCE_FILES
         *.cpp *.c
         include/*.h
+
+        kernel/*.*
         )
 
 add_library(platform SHARED ${PLATFORM_SOURCE_FILES})
 
 set_target_properties(platform PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/platform/lib/)
 
-target_compile_options(platform PUBLIC -fPIC -DPL_INTERNAL)
+target_compile_options(platform PUBLIC -DPL_INTERNAL)
+if(NOT MINGW)
+    target_compile_options(platform PUBLIC -fPIC)
+endif()
+
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     target_link_libraries(platform "-framework OpenGL" -L/usr/X11/lib -L/usr/X11R6/lib)
 else()

@@ -107,13 +107,9 @@ typedef enum PLBufferMask {
 #endif
 } PLBufferMask;
 
-typedef enum VLCullMode {
-    VL_CULL_START = -1,
-
-    VL_CULL_POSTIVE,
-    VL_CULL_NEGATIVE,
-
-    VL_CULL_END
+typedef enum PLCullMode {
+    GL_CULL_POSTIVE,
+    GL_CULL_NEGATIVE
 } PLCullMode;
 
 // Blending Modes

@@ -38,7 +38,18 @@ include_directories("${CMAKE_SOURCE_DIR}/include/")           # Base include dir
 include_directories("${CMAKE_SOURCE_DIR}/platform/include/")  # Platform lib headers get used for everything.
 include_directories("${CMAKE_SOURCE_DIR}/shared/")            # Xenon shared headers.
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+if(MINGW)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++14")
+    set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} -std=gnu11)
+
+    # External Libraries
+    include_directories(${CMAKE_SOURCE_DIR}/external/glew-2.0.0/include/)
+    include_directories(${CMAKE_SOURCE_DIR}/external/tiff-3.8.2-1-lib/include/)
+
+    add_subdirectory(external/glew-2.0.0/build/cmake)
+else()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+endif()
 
 add_definitions("-D_DEBUG")
 

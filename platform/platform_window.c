@@ -316,7 +316,9 @@ PLresult _plInitWindow(void) {
 
     plClearLog(PL_WINDOW_LOG);
 
+#if !defined(_WIN32)
     XSetErrorHandler(_plHandleX11Error);
+#endif
 
     return PL_RESULT_SUCCESS;
 }

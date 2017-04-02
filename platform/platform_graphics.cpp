@@ -473,10 +473,10 @@ void plSetCullMode(PLCullMode mode) {
     glCullFace(GL_BACK);
     switch (mode) {
         default:
-        case VL_CULL_NEGATIVE:
+        case GL_CULL_NEGATIVE:
             glFrontFace(GL_CW);
             break;
-        case VL_CULL_POSTIVE:
+        case GL_CULL_POSTIVE:
             glFrontFace(GL_CCW);
             break;
     }
@@ -1085,7 +1085,7 @@ void plApplyLighting(PLDraw *object, PLLight *light, PLVector3f position) {
 
 void plSetDefaultGraphicsState(void) {
     plSetClearColour(plCreateColour4b(PL_COLOUR_BLACK));
-    plSetCullMode(VL_CULL_NEGATIVE);
+    plSetCullMode(GL_CULL_NEGATIVE);
     plSetTextureUnit(0);
 
 #if defined(PL_MODE_OPENGL)

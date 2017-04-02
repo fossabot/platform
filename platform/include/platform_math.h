@@ -735,7 +735,7 @@ typedef struct PLQuaternion {
 
 // http://stackoverflow.com/questions/7978759/generate-float-random-values-also-negative
 static PL_INLINE PLdouble plUniform0To1Random(void) {
-    return (random()) / ((double) RAND_MAX + 1);
+    return (rand()) / ((double) RAND_MAX + 1);
 }
 
 static PL_INLINE PLdouble plGenerateUniformRandom(double minmax) {
